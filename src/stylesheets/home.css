@@ -1,0 +1,7 @@
+.home-container {
+    background: lightblue;
+    display: grid;
+    grid-template-columns: 30% auto;
+    height: 100vh;
+    margin: 20px;
+}
