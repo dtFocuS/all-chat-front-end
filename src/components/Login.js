@@ -23,6 +23,11 @@ class Login extends Component {
                         </div>
                     </div>
                 </div>
+                <div className="footer">
+                    <button type="button" className='btn'>
+                        Login
+                    </button>
+                </div>
             </div>
 
 
