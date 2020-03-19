@@ -4,4 +4,5 @@
     grid-template-columns: 30% auto;
     height: 100vh;
     margin: 20px;
+    position: relative;
 }

@@ -1,0 +1,22 @@
+
+/* .chat-room {
+    position: relative;
+} */
+
+.form-group {
+    width: 95%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.form-button {
+    /* position: absolute; */
+    /* right: 30px; */
+    backgroud-color: pink;
+}
+
+.chat-feed {
+    height: 75%;
+    background-color:#DDEBF3;
+    margin: 20px;
+}
