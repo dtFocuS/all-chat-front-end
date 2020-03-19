@@ -1,3 +1,44 @@
+.list-group {
+    height: 100%;
+    padding: 0;
+    overflow: auto;
+}
+
 .friends-container {
     background-color: lightpink;
 }
+
+
+.friend-bar {
+    height: 130px;
+    position: relative;
+}
+
+.friend-bar h2 {
+    position: absolute;
+    right: 20%;
+    top: 30%;
+}
+
+.container-image-name {
+    position: relative;
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.list-group-item {
+    position: relative;
+    /* display: flex; */
+    height: 100%;
+    padding: 0;
+    cursor: pointer;
+}
+
+img {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    transform: rotate(90deg);
+}
+
