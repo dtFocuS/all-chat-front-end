@@ -2,7 +2,19 @@
     background: lightblue;
     display: grid;
     grid-template-columns: 30% auto;
-    height: 100vh;
+    height: 95vh;
     margin: 20px;
     position: relative;
+}
+
+.side-nav {
+    position: fixed;
+    height: 95%;
+    background-color: rgba(209, 199, 199, 0.959);
+    z-index: 1;
+}
+
+.side-nav a {
+    padding-left: 3px;
+    font-size: 30px;
 }

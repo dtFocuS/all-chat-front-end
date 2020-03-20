@@ -1,13 +1,30 @@
 .welcome-container {
-    height: 100vh;
+    margin: 20px;
+    height: 95vh;
     /* margin: 20px; */
     background-color: lightblue;
 }
 
 .base-container h3 {
+    font-family: 'Oswald', sans-serif;
     text-align: center;
     color: white;
     margin-top: 50px;
+}
+
+.welcome-container p {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+.welcome-container p span {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.welcome-container p span:hover {
+    color: rgba(223, 136, 150, 0.904);
 }
 
 .login-form, .signup-form {
@@ -18,10 +35,6 @@
 
 }
 
-/* .login-form button {
-    
-    width: 95%
-} */
 
 .header-logo {
     text-align: center;

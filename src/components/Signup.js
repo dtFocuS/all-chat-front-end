@@ -16,13 +16,16 @@ class Signup extends Component {
                     </Form.Group>
                     <Form.Group controlId="formGroupEmail">
                         {/* <Form.Label>Email address</Form.Label> */}
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="email" placeholder="Email" />
                     </Form.Group>
                     <Form.Group controlId="formGroupPassword">
                         {/* <Form.Label>Password</Form.Label> */}
                         <Form.Control type="password" placeholder="Password" />
                     </Form.Group>
-                    <Button type="submit">Sign up</Button>
+                    <Form.Group>
+                        <Button type="submit" variant="secondary" block>Sign up</Button>
+                    </Form.Group>
+                    <p>Back to <span onClick={this.props.handleSignUp}>Log in</span></p>
                 </Form>
             </div>
 

@@ -4,6 +4,9 @@ import { Form, Button } from 'react-bootstrap';
 
 class Login extends Component {
 
+
+
+
     
 
     render() {
@@ -16,16 +19,21 @@ class Login extends Component {
                         {/* <Form.Label>Username</Form.Label> */}
                         <Form.Control type="text" placeholder="Username" />
                     </Form.Group>
-                    <Form.Group controlId="formGroupEmail">
+                    {/* <Form.Group controlId="formGroupEmail"> */}
                         {/* <Form.Label>Email address</Form.Label> */}
-                        <Form.Control type="email" placeholder="Enter email" />
-                    </Form.Group>
+                        {/* <Form.Control type="email" placeholder="Email" /> */}
+                    {/* </Form.Group> */}
                     <Form.Group controlId="formGroupPassword">
                         {/* <Form.Label>Password</Form.Label> */}
                         <Form.Control type="password" placeholder="Password" />
                     </Form.Group>
-                    <Button type="submit" variant="secondary" block>Log in</Button>
+                    <Form.Group>
+                        <Button type="submit" variant="secondary" block>Log in</Button>
+
+                    </Form.Group>
+                    
                 </Form>
+                <p>Don't have an account yet? <span onClick={this.props.handleSignUp}>Sign up</span></p>
             </div>
 
 

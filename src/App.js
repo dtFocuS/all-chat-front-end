@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Home from './containers/Home';
@@ -26,8 +26,29 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Welcome />
-        {/* <Home /> */}
+        <Router>
+          <Switch>
+            <Route
+              exact
+              path={"/"}
+              render={(props) =>(
+                <Welcome {...props}/>
+
+              )}
+            />
+            <Route 
+              exact
+              path={'/home'}
+              render={(props) =>(
+                <Home {...props}/>
+              )}
+            
+            
+            />
+          </Switch>
+        </Router>
+        
+
       </div>
     );
 
