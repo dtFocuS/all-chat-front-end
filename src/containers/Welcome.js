@@ -6,12 +6,17 @@ import '../stylesheets/welcome.css';
 
 class Welcome extends Component {
 
+    constructor(props) {
+        super(props);
+        
+    }
+
     render() {
 
 
         return(
             <div class='welcome-container'>
-                <h1>All Chat</h1>
+                <h1 className="header-logo">All Chat</h1>
                 <Login />
                 {/* <Signup /> */}
             </div>

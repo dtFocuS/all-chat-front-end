@@ -1,4 +1,32 @@
 .welcome-container {
-    width: 30%;
+    height: 100vh;
+    /* margin: 20px; */
+    background-color: lightblue;
+}
+
+.base-container h3 {
+    text-align: center;
+    color: white;
+    margin-top: 50px;
+}
+
+.login-form, .signup-form {
+    position: relative;
+    padding-top: 20px;
+    width: 20%; 
     margin: 0 auto;
+
+}
+
+/* .login-form button {
+    
+    width: 95%
+} */
+
+.header-logo {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: rgba(223, 136, 150, 0.904);
+
+    font-size: 100px;
 }
