@@ -2,14 +2,18 @@ import React, { Component, Fragment } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 
-class Login extends Component {
+class Signup extends Component {
 
     render() {
 
         return(
             <div className='base-container'>
-                <h3>Log in</h3>
+                <h3>Sign up</h3>
                 <Form>
+                    <Form.Group>
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="text" placeholder="Enter username" />
+                    </Form.Group>
                     <Form.Group controlId="formGroupEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="Enter email" />
@@ -28,8 +32,6 @@ class Login extends Component {
 
     }
 
-
-
 }
 
-export default Login;
+export default Signup;

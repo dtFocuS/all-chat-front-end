@@ -3,6 +3,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Home from './containers/Home';
+import Welcome from './containers/Welcome';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
@@ -25,7 +26,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Home />
+        <Welcome />
+        {/* <Home /> */}
       </div>
     );
 
