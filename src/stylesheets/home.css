@@ -10,11 +10,43 @@
 .side-nav {
     position: fixed;
     height: 95%;
-    background-color: rgba(209, 199, 199, 0.959);
+    background-color: rgba(253, 250, 250, 0.959);
     z-index: 1;
+    /* transition: 0.7s; */
+
+    /* align-items: center; */
+    
+    
 }
 
-.side-nav a {
+.for-menu-items {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.for-menu-items a {
+    margin-bottom: 50px;;
+    font-size: 30px;
+    color: lightskyblue;
+}
+
+.for-menu-items a:hover {
+    text-decoration: none;
+}
+
+
+
+.side-nav .menu-arrow {
     padding-left: 3px;
     font-size: 30px;
+    color: lightskyblue;
+}
+
+.menu-items {
+    
+
 }

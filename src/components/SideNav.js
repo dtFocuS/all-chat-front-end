@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import MenuItems from './MenuItems';
 
 
 
@@ -23,11 +24,14 @@ class SideNav extends Component {
         return(
             <div className='side-nav' style={this.state.closed ? closeMenu : openMenu}>
                 <span className='slide'>
-                    <a href='#' onClick={this.handleOpen}>
+                    <a href='#' onClick={this.handleOpen} className='menu-arrow'>
                         {this.state.closed ? <i class="fas fa-chevron-right"></i> : <i class="fas fa-chevron-left"></i>}
                     </a>
                 </span>
+                <div class='for-menu-items'>
+                    {this.state.closed ? null : <MenuItems handleOpen={this.handleOpen}/>}
 
+                </div>
 
             </div>
         )
