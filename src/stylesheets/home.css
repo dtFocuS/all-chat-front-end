@@ -32,12 +32,26 @@
     margin-bottom: 50px;;
     font-size: 30px;
     color: lightskyblue;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
 }
 
 .for-menu-items a:hover {
     text-decoration: none;
 }
 
+.for-modal .modal-title {
+    font-family: 'Oswald', sans-serif;
+    color: lightskyblue;
+    font-weight: bold;
+}
+
+.for-modal input {
+    border: 1px solid gray;
+    border-radius: 10px;
+    width: 80%;
+    margin: 25px auto;
+}
 
 
 .side-nav .menu-arrow {
