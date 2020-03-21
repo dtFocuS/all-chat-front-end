@@ -31,7 +31,7 @@ class SideNav extends Component {
                     </a>
                 </span>
                 <div class='for-menu-items'>
-                    {this.state.closed ? null : <MenuItems handleModal={this.props.handleModal} handleOpen={this.handleOpen}/>}
+                    {this.state.closed ? null : <MenuItems logOut={this.props.logOut} handleModal={this.props.handleModal} handleOpen={this.handleOpen}/>}
 
                 </div>
 

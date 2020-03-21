@@ -7,6 +7,11 @@ class Login extends Component {
 
 
 
+
+    handleSubmit = event => {
+        event.preventDefault();
+        this.props.handleLogin(event)
+    }
     
 
     render() {
@@ -14,7 +19,7 @@ class Login extends Component {
         return(
             <div className='base-container'>
                 <h3>Log in</h3>
-                <Form className='login-form'>
+                <Form className='login-form' onSubmit={this.handleSubmit}>
                     <Form.Group>
                         {/* <Form.Label>Username</Form.Label> */}
                         <Form.Control type="text" placeholder="Username" />
@@ -33,7 +38,7 @@ class Login extends Component {
                     </Form.Group>
                     
                 </Form>
-                <p>Don't have an account yet? <span onClick={this.props.handleSignUp}>Sign up</span></p>
+                <p>Don't have an account yet? <span onClick={this.props.handleSwitch}>Sign up</span></p>
             </div>
 
 

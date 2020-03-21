@@ -30,7 +30,7 @@ class Home extends Component {
         return(
             <div className='home-container'>
                 <SearchModal handleModal={this.handleModal} modalShow={this.state.modalShow}/>
-                <SideNav handleModal={this.handleModal}/>
+                <SideNav logOut={this.props.logOut} handleModal={this.handleModal}/>
                 <FriendsList />
                 <ChatRoom />
             </div>

@@ -14,7 +14,7 @@ class Welcome extends Component {
         
     }
 
-    handleSignUp = () => {
+    handleSwitch = () => {
         this.setState(prevState => ({
             signUp: !prevState.signUp
         }))
@@ -27,7 +27,7 @@ class Welcome extends Component {
         return(
             <div class='welcome-container'>
                 <h1 className="header-logo">All Chat</h1>
-                {this.state.signUp ? <Signup handleSignUp={this.handleSignUp}/> : <Login handleSignUp={this.handleSignUp}/>}
+                {this.state.signUp ? <Signup handleSwitch={this.handleSwitch} handleSignUp={this.props.handleSignUp}/> : <Login handleLogin={this.props.handleLogin} handleSwitch={this.handleSwitch}/>}
                 
                 {/* <p>Don't have an account yet? <span onClick={this.handleSignUp}>Sign up</span></p> */}
                 {/* <Signup /> */}
