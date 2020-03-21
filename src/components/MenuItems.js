@@ -1,23 +1,33 @@
-import React, {Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 
 
 
-function MenuItems(props) {
+class MenuItems extends Component {
 
 
-    return(
-        <React.Fragment>
-            <a href="#" onClick={props.handleOpen}>
-                Add Friend
-            </a>
-            <a href="#" onClick={props.handleOpen}>
-                Log Out
-            </a>
 
-        </React.Fragment>
+    handleOpenAndClose = () => {
+        this.props.handleOpen();
+        this.props.handleModal();
+    }
 
+    render() {
+        return(
+            <React.Fragment>
+                <a href="#" onClick={this.handleOpenAndClose}>
+                    Add Friend
+                </a>
+                <a href="#" onClick={this.handleOpenAndClose}>
+                    Log Out
+                </a>
+    
+            </React.Fragment>
+    
+    
+        )
 
-    )
+    }
+    
 
 }
 

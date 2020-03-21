@@ -18,6 +18,8 @@ class SideNav extends Component {
         }))
     }
 
+    
+
     render() {
         const closeMenu = { width: '25px' };
         const openMenu = { width: '250px'}
@@ -29,7 +31,7 @@ class SideNav extends Component {
                     </a>
                 </span>
                 <div class='for-menu-items'>
-                    {this.state.closed ? null : <MenuItems handleOpen={this.handleOpen}/>}
+                    {this.state.closed ? null : <MenuItems handleModal={this.props.handleModal} handleOpen={this.handleOpen}/>}
 
                 </div>
 
