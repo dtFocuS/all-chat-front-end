@@ -21,7 +21,7 @@ class Home extends Component {
         this.setState(prevState => ({
             modalShow: !prevState.modalShow
         }))
-        console.log(this.state.modalShow)
+        // console.log(this.state.modalShow)
     }
 
 
@@ -29,10 +29,10 @@ class Home extends Component {
     render() {
         return(
             <div className='home-container'>
-                <SearchModal handleModal={this.handleModal} modalShow={this.state.modalShow}/>
+                <SearchModal handleAddFriend={this.props.handleAddFriend} handleModal={this.handleModal} modalShow={this.state.modalShow} otherUsers={this.props.otherUsers}/>
                 <SideNav logOut={this.props.logOut} handleModal={this.handleModal}/>
                 <FriendsList />
-                <ChatRoom />
+                {/* <ChatRoom /> */}
             </div>
         )
     }

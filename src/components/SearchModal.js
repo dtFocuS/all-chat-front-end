@@ -11,37 +11,62 @@ class SearchModal extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+          selectedUser: null,
+        }
+
     }
-    data = [
-        {
-          key: 'john',
-          value: 'John Doe',
-        },
-        {
-          key: 'jane',
-          value: 'Jane Doe',
-        },
-        {
-          key: 'mary',
-          value: 'Mary Phillips',
-        },
-        {
-          key: 'robert',
-          value: 'Robert',
-        },
-        {
-          key: 'karius',
-          value: 'Karius',
-        },
-      ]
+    // data = [
+    //     {
+    //       key: 'john',
+    //       value: 'John Doe',
+    //     },
+    //     {
+    //       key: 'jane',
+    //       value: 'Jane Doe',
+    //     },
+    //     {
+    //       key: 'mary',
+    //       value: 'Mary Phillips',
+    //     },
+    //     {
+    //       key: 'robert',
+    //       value: 'Robert',
+    //     },
+    //     {
+    //       key: 'karius',
+    //       value: 'Karius',
+    //     },
+    //   ]
+    componentDidUpdate() {
+      // console.log(this.props.otherUsers)
 
+    }
 
+    // data = this.props.otherUsers
 
+    handleAdd = () => {
+      
+      this.props.handleModal();
+      this.props.handleAddFriend(this.state.selectedUser);
+    }
+
+    handleSelect = (record) => {
+      this.setState(prevState => ({
+        selectedUser: record
+      }))
+    }
 
 
     render() {
-
-
+        
+        const data = this.props.otherUsers.map( user => {
+          return {
+            id: user.id,
+            key: user.username,
+            value: user.username
+          }
+        })
         return(
 
             <Modal show={this.props.modalShow} className='for-modal'>
@@ -52,13 +77,14 @@ class SearchModal extends Component {
                 <ReactSearchBox
                     placeholder="Search Friend"
                     value=""
-                    data={this.data}
+                    data={data}
                     callback={record => console.log(record)}
+                    onSelect={this.handleSelect}
                 />
 
                 <Modal.Footer>
                     <Button variant="secondary" onClick={this.props.handleModal}>Cancel</Button>
-                    <Button variant="primary" onClick={this.props.handleModal}>Add Friend</Button>
+                    <Button variant="primary" onClick={this.handleAdd}>Add Friend</Button>
                 </Modal.Footer>
             </Modal>
 

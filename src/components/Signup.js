@@ -20,7 +20,7 @@ class Signup extends Component {
     }
 
     handleChange = event => {
-        console.log(event.target.value)
+        // console.log(event.target.value)
     }
 
 
@@ -48,7 +48,10 @@ class Signup extends Component {
         })
         .then(resp => resp.json())
         .then(json => {
-            this.props.handleSignUp(json.user);
+            this.props.handleSignUp({
+                username: username,
+                password: password
+            });
         })
         
     }

@@ -9,14 +9,30 @@ class FriendsList extends Component {
         super()
     }
 
+    showFriends = () => {
+        const showFriends = null;
+
+        if (this.props.myFriends) {
+            showFriends = this.props.myFriends.map(friend => {
+                return <FriendBar key={friend.id} />
+            })
+        }
+
+        return showFriends;
+    }
 
 
     render() {
+        
+        
+        
         return(
 
             <div className='friends-container'>
                 <ListGroup>
-                    <FriendBar />
+                    {
+                        this.props.myFriends ? this.showFriends : null
+                    }
                 </ListGroup>
                 
             </div>

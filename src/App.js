@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Home from './containers/Home';
 import Welcome from './containers/Welcome';
+import FriendsList from './components/FriendsList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import faker from 'faker';
 
@@ -12,6 +13,9 @@ const localHost = "http://localhost:3000/";
 const initialState = {
   isLoggedIn: false,
   currentUser: '',
+  otherUsers: [],
+  notYetFriends: [],
+  myFriends: [],
   currentRoom: {
     room: {}, 
     users: [],
@@ -26,6 +30,9 @@ class App extends Component {
     this.state = {
       isLoggedIn: false,
       currentUser: '',
+      otherUsers: [],
+      notYetFriends: [],
+      myFriends: [],
       currentRoom: {
         room: {}, 
         users: [],
@@ -34,11 +41,52 @@ class App extends Component {
     }
   }
 
+  componentDidMount()  {
+    
+    let token = localStorage.getItem('jwt')
+    // console.log(token)
+    if (token) {
+      this.getUser();
+      
+      // fetch('http://localhost:3000/api/v1/profile', {
+      //   headers: {
+      //     'Authorization': 'Bearer ' + token
+      //   }
+      // })
+      // .then(response => response.json())
+      // .then(json => {
+      //   this.setState(prevState => ({
+      //     currentUser: json
+      //   }), console.log(this.state.isLoggedIn))
+      // })
+    }
+  }
+
+  componentDidUpdate() {
+    // console.log(this.state.isLoggedIn)
+    // console.log(this.state.currentUser)
+    // console.log(localStorage.getItem('jwt'))
+    // this.getUser();
+  }
+ 
+
+  loadOtherUsers = () => {
+    fetch(localHost + 'api/v1/users')
+    .then(resp => resp.json())
+    .then(json => {
+      const otherUsers = json.filter(user => user.id != this.state.currentUser.id)
+      this.setState(prevState => ({
+        otherUsers: otherUsers
+      }))
+    })
+  }
+
   getToken = (jwt) => {
     return localStorage.getItem('jwt')
   }
 
   saveToken(jwt) {
+    console.log("saved")
     localStorage.setItem('jwt', jwt)
   }
 
@@ -80,7 +128,9 @@ class App extends Component {
     })
 
   }
-
+  // componentDidUpdate() {
+  //   this.getUser();
+  // }
   getUser = () => {
     let token = this.getToken()
     fetch(localHost + 'api/v1/profile', {
@@ -94,20 +144,43 @@ class App extends Component {
         this.setState(prevState => ({
           currentUser: json.user,
           isLoggedIn: true
-        }))
+        }), (() => {this.loadData()}))
       }
     })
+  }
+
+  loadData = () => {
+    console.log(this.state.currentUser);
+    this.loadOtherUsers();
+    this.loadNotYetFriends();
+    this.loadMyFriends();
+  }
+
+  loadMyFriends = () => {
+    fetch(localHost + 'api/v1/friendships')
+    .then(resp => resp.json())
+    .then(json => {
+      // const friends = json.filter(friend => friend.user.id !== this.state.currentUser.id);
+      // const myFriends = this.state.otherUsers
+      // this.setState(prevState => ({
+
+      // }))
+    })
+  }
+
+  loadNotYetFriends = () => {
+
   }
 
  
   logOut = () => {
     this.clearToken();
     this.resetState();
-    // this.setState(prevState => ({ 
-    //   isLoggedIn: false,
-    //   currentUser: null
-    // }), this.props.history.push('/'));
-    return true;
+    this.setState({
+      currentUser: null
+    })
+    return <Redirect to='/' />
+
     
   }
   resetState = () =>{
@@ -118,48 +191,85 @@ class App extends Component {
     localStorage.setItem("jwt", "");
   }
 
+  handleAddFriend = (friend) => {
+    console.log(friend);
+
+    fetch(localHost + 'api/v1/friendships', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ friendship: { user_id: this.state.currentUser.id, friend_id: friend.id }})
+    })
+    .then(resp => resp.json())
+    .then(json => {
+      console.log(json)
+    })
+    // const newFriend = otherUsers.
+  }
+
 
   render() {
+    
 
-    if (this.state.isLoggedIn === true) {
-      return <Redirect to='/home' push={true}/>
-    } else {
-      return (
-        <div className="App">
-          <Router>
-            <Switch>
-              <Route
-                exact
-                path={"/"}
-                render={(props) =>(
-                  <Welcome {...props}
-                    handleLogin={this.handleLogin}
-                    handleSignUp={this.handleSignUp}
-                  
-                  />
+   
+    return (
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route
+              exact
+              path={"/"}
+              render={(props) =>{
+                return this.state.isLoggedIn ?
+                <Redirect to='/home' />
+                :
+                <Welcome {...props}
+                  handleLogin={this.handleLogin}
+                  handleSignUp={this.handleSignUp}
+                />
   
-                )}
+              }}
+            />
+            <Route 
+              exact
+              path={'/home'}
+              render={(props) =>(
+                <Home {...props}
+                  currentUser={this.state.currentUser}
+                  logOut={this.logOut}
+                  otherUsers={this.state.otherUsers}
+                  handleAddFriend={this.handleAddFriend}
+                />
+              )} 
+            />
+            <Route exact path='/rooms' render={ (props) => (
+              <FriendsList
+                allRooms={this.state.allRooms}
+                currentUser={this.state.currentUser}
+                myFriends={this.state.myFriends}
               />
-              <Route 
-                exact
-                path={'/home'}
-                render={(props) =>(
-                  <Home {...props}
-                    currentUser={this.state.currentUser}
-                    logOut={this.logOut}
-                  />
-                )}
-              
-              
+            )} />
+            {/* <Route exact path='/rooms/:id' render={ (props) => {
+              return this.state.currentUser ?
+              (<RoomShow
+                {...props}
+                cableApp={this.props.cableApp}
+                getRoomData={this.getRoomData}
+                updateApp={this.updateAppStateRoom}
+                roomData={this.state.currentRoom}
+                currentUser={this.state.currentUser}
               />
-            </Switch>
-          </Router>
-          
-  
-        </div>
-      );
+              ) : (
+                <Redirect to='/' />
+              )
+            }} /> */}
+          </Switch>
+        </Router>
+      </div>
+    );
 
-    }
+
     
 
   }
