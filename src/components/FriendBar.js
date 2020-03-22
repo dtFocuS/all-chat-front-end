@@ -17,8 +17,8 @@ class FriendBar extends Component {
             <div className='friend-bar'>
                 <ListGroup.Item variant="warning" onClick={this.handleClick}>
                     <div className="container-image-name">
-                        <Image src={profile_pic} roundedCircle />
-                        <h2>Danny Tseng</h2>
+                        <Image src={this.props.friend.avatar} roundedCircle />
+                        <h2>{this.props.friend.username}</h2>
 
                     </div>
                     

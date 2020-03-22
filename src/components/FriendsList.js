@@ -10,11 +10,11 @@ class FriendsList extends Component {
     }
 
     showFriends = () => {
-        const showFriends = null;
+        let showFriends = null;
 
         if (this.props.myFriends) {
             showFriends = this.props.myFriends.map(friend => {
-                return <FriendBar key={friend.id} />
+                return <FriendBar key={friend.id} friend={friend}/>
             })
         }
 
@@ -31,7 +31,7 @@ class FriendsList extends Component {
             <div className='friends-container'>
                 <ListGroup>
                     {
-                        this.props.myFriends ? this.showFriends : null
+                        this.props.myFriends ? this.showFriends() : null
                     }
                 </ListGroup>
                 

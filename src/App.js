@@ -16,6 +16,7 @@ const initialState = {
   otherUsers: [],
   notYetFriends: [],
   myFriends: [],
+  myRooms: [],
   currentRoom: {
     room: {}, 
     users: [],
@@ -33,6 +34,7 @@ class App extends Component {
       otherUsers: [],
       notYetFriends: [],
       myFriends: [],
+      myRooms: [],
       currentRoom: {
         room: {}, 
         users: [],
@@ -160,7 +162,10 @@ class App extends Component {
     fetch(localHost + 'api/v1/friendships')
     .then(resp => resp.json())
     .then(json => {
-      // const friends = json.filter(friend => friend.user.id !== this.state.currentUser.id);
+      this.setState(prevState => ({
+        myFriends: this.state.currentUser.friends
+      }))
+
       // const myFriends = this.state.otherUsers
       // this.setState(prevState => ({
 
@@ -169,6 +174,17 @@ class App extends Component {
   }
 
   loadNotYetFriends = () => {
+    fetch(localHost + 'api/v1/friendships')
+    .then(resp => resp.json())
+    .then(json => {
+      const friends = json.filter(friend => friend.user_id !== this.state.currentUser.id);
+      const notYetFriends = friends.filter(friend => friend.friend_id !== this.state.currentUser.id)
+      // console.log(notYetFriends)
+      // const myFriends = this.state.otherUsers
+      // this.setState(prevState => ({
+
+      // }))
+    })
 
   }
 
@@ -203,10 +219,38 @@ class App extends Component {
     })
     .then(resp => resp.json())
     .then(json => {
-      console.log(json)
+      // const friendship = json[0].friend_id;
+      console.log(json[0].friend_id)
+      const friend = this.state.otherUsers.filter(user => user.id === json[0].friend_id)
+
+      this.setState(prevState => ({
+        myFriends: [...prevState.myFriends, friend[0]],
+        notYetFriends: [...prevState.notYetFriends].filter(user => user.id !== json[0].friend_id)
+      }), (() => this.createRoom(this.state.currentUser, friend[0], json[0].id)))
+      
     })
-    // const newFriend = otherUsers.
+    
   }
+
+  createRoom = (user, friend, friendshipId) => {
+    const name = "" + friendshipId + " " + user.id + " " + friend.id;
+    fetch(localHost + 'api/v1/rooms', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ room: { name: name}})
+    })
+    .then(resp => resp.json())
+    .then(json => {
+      this.setState(prevState => ({
+        myRooms: [...prevState.myRooms].push(json.room)
+      }), (() => {console.log(this.state.myRooms)}))
+    })
+  }
+
+
+
 
 
   render() {
@@ -240,16 +284,17 @@ class App extends Component {
                   logOut={this.logOut}
                   otherUsers={this.state.otherUsers}
                   handleAddFriend={this.handleAddFriend}
+                  myFriends={this.state.myFriends}
                 />
               )} 
             />
-            <Route exact path='/rooms' render={ (props) => (
+            {/* <Route exact path='/rooms' render={ (props) => (
               <FriendsList
                 allRooms={this.state.allRooms}
                 currentUser={this.state.currentUser}
                 myFriends={this.state.myFriends}
               />
-            )} />
+            )} /> */}
             {/* <Route exact path='/rooms/:id' render={ (props) => {
               return this.state.currentUser ?
               (<RoomShow

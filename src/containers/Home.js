@@ -31,7 +31,7 @@ class Home extends Component {
             <div className='home-container'>
                 <SearchModal handleAddFriend={this.props.handleAddFriend} handleModal={this.handleModal} modalShow={this.state.modalShow} otherUsers={this.props.otherUsers}/>
                 <SideNav logOut={this.props.logOut} handleModal={this.handleModal}/>
-                <FriendsList />
+                <FriendsList myFriends={this.props.myFriends}/>
                 {/* <ChatRoom /> */}
             </div>
         )
