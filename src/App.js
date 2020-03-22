@@ -169,7 +169,7 @@ class App extends Component {
       const myRooms = json.filter(room => room.friend_id === this.state.currentUser.id)
       this.setState(prevState => ({
         myRooms: [...prevState.myRooms, ...myRooms, ...this.state.currentUser.rooms]
-      }), (() => console.log(this.state.myRooms)))
+      }), (() => console.log("my rooms: " + this.state.myRooms)))
     })
   }
 
@@ -265,9 +265,10 @@ class App extends Component {
   }
 
   getRoomData = (id) => {
-    fetch(`http://localhost:3000/rooms/${id}`)
+    fetch(localHost + `api/v1/rooms/${id}`)
     .then(resp => resp.json())
     .then(result => {
+      console.log("room data result" + result);
       this.setState({
         currentRoom: {
           room: result.data,

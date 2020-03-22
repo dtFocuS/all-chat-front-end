@@ -15,6 +15,7 @@ class Home extends Component {
         this.state = {
             modalShow: false,
             curRoom: null,
+            friend: null,
         }
     }
 
@@ -29,7 +30,12 @@ class Home extends Component {
         this.setState(prevState => ({
             curRoom: id
         }))
+    }
 
+    handleGetFriend = (friend) => {
+        this.setState(prevState => ({
+            friend: friend,
+        }))
     }
 
     showRoom = () => {
@@ -38,7 +44,7 @@ class Home extends Component {
             let findRooms = this.props.myRooms.filter(room => room.id === this.state.curRoom);
             console.log(findRooms)
             room = findRooms.map(room => {
-                return <ChatRoom key={room.id} room={room} cableApp={this.props.cableApp}/>
+                return <ChatRoom friend={this.state.friend} key={room.id} room={room} cableApp={this.props.cableApp} updateApp={this.props.updateApp} getRoomData={this.props.getRoomData} roomData={this.props.roomData}/>
             })
         }
         return room;
@@ -51,7 +57,7 @@ class Home extends Component {
             <div className='home-container'>
                 <SearchModal handleAddFriend={this.props.handleAddFriend} handleModal={this.handleModal} modalShow={this.state.modalShow} otherUsers={this.props.otherUsers}/>
                 <SideNav logOut={this.props.logOut} handleModal={this.handleModal}/>
-                <FriendsList handleGetRoom={this.handleGetRoom} myRooms={this.props.myRooms} myFriends={this.props.myFriends}/>
+                <FriendsList handleGetFriend={this.handleGetFriend} handleGetRoom={this.handleGetRoom} myRooms={this.props.myRooms} myFriends={this.props.myFriends}/>
                 { this.state.curRoom ? this.showRoom() : <h1 className="empty-chat-message">Search or click on friends to start chatting!</h1>}
             </div>
         )

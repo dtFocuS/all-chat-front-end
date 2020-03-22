@@ -10,6 +10,7 @@ class FriendBar extends Component {
         console.log("click")
         // console.log(this.props.room.id)
         this.props.handleGetRoom(this.props.room.id);
+        this.props.handleGetFriend(this.props.friend);
     }
 
     render() {

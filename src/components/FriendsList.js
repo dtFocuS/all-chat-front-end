@@ -16,7 +16,7 @@ class FriendsList extends Component {
             showFriends = this.props.myFriends.map(friend => {
                 let room1 = this.props.myRooms.filter(room => room.friend_id === friend.id);
                 let room2 = this.props.myRooms.filter(room => room.user_id === friend.id);
-                return <FriendBar key={friend.id} friend={friend} room={ room1.length > 0 ? room1[0] : room2[0]} handleGetRoom={this.props.handleGetRoom}/>
+                return <FriendBar handleGetFriend={this.props.handleGetFriend} key={friend.id} friend={friend} room={ room1.length > 0 ? room1[0] : room2[0]} handleGetRoom={this.props.handleGetRoom}/>
             })
         }
 
