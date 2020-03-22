@@ -3,10 +3,13 @@ import { Form, Button, ListGroup, Image, Badge } from 'react-bootstrap';
 import profile_pic from '../images/profile_pic.jpg';
 
 
+
 class FriendBar extends Component {
 
     handleClick = () => {
         console.log("click")
+        // console.log(this.props.room.id)
+        this.props.handleGetRoom(this.props.room.id);
     }
 
     render() {

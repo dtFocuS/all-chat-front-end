@@ -61,3 +61,11 @@
     color: lightskyblue;
 }
 
+.empty-chat-message {
+    width: 60%;
+    margin: 0 auto;
+    font-family: 'Oswald', sans-serif;
+    color: rgba(223, 136, 150, 0.904);
+    font-weight: bold;
+}
+

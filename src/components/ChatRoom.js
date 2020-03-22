@@ -33,7 +33,7 @@ class ChatRoom extends Component {
                 <ChatFeed />
                 <Form className='form-group' onSubmit={this.handleSubmit}>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Message</Form.Label>
+                    <Form.Label>{this.props.room.name}</Form.Label>
                     <Form.Control as="textarea" rows="3" className='chat-input-area' value={this.state.message} onChange={this.handleChange}/>
                     <Button variant="dark" type="submit" className='form-button'>
                         Submit

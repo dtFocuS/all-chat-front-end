@@ -5,6 +5,7 @@ import './App.css';
 import Home from './containers/Home';
 import Welcome from './containers/Welcome';
 import FriendsList from './components/FriendsList';
+import ChatRoom from './components/ChatRoom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import faker from 'faker';
 
@@ -156,6 +157,20 @@ class App extends Component {
     this.loadOtherUsers();
     this.loadNotYetFriends();
     this.loadMyFriends();
+    this.loadMyRooms();
+  }
+
+  loadMyRooms = () => {
+    
+    // console.log(this.state.currentUser.rooms)
+    fetch(localHost + 'api/v1/rooms')
+    .then(resp => resp.json())
+    .then(json => {
+      const myRooms = json.filter(room => room.friend_id === this.state.currentUser.id)
+      this.setState(prevState => ({
+        myRooms: [...prevState.myRooms, ...myRooms, ...this.state.currentUser.rooms]
+      }), (() => console.log(this.state.myRooms)))
+    })
   }
 
   loadMyFriends = () => {
@@ -226,7 +241,7 @@ class App extends Component {
       this.setState(prevState => ({
         myFriends: [...prevState.myFriends, friend[0]],
         notYetFriends: [...prevState.notYetFriends].filter(user => user.id !== json[0].friend_id)
-      }), (() => this.createRoom(this.state.currentUser, friend[0], json[0].id)))
+      }), (() => {this.createRoom(this.state.currentUser, friend[0], json[0].id)}))
       
     })
     
@@ -239,13 +254,37 @@ class App extends Component {
       headers: {
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ room: { name: name}})
+      body: JSON.stringify({ room: { name: name, user_id: user.id, friend_id: friend.id}})
     })
     .then(resp => resp.json())
     .then(json => {
       this.setState(prevState => ({
-        myRooms: [...prevState.myRooms].push(json.room)
+        myRooms: [...prevState.myRooms, json.room]
       }), (() => {console.log(this.state.myRooms)}))
+    })
+  }
+
+  getRoomData = (id) => {
+    fetch(`http://localhost:3000/rooms/${id}`)
+    .then(resp => resp.json())
+    .then(result => {
+      this.setState({
+        currentRoom: {
+          room: result.data,
+          users: result.data.attributes.users,
+          messages: result.data.attributes.messages
+        }
+      })
+    })
+  }
+
+  updateAppStateRoom = (newRoom) => {
+    this.setState({
+      currentRoom: {
+        room: newRoom.room.data,
+        users: newRoom.users,
+        messages: newRoom.messages
+      }
     })
   }
 
@@ -285,6 +324,12 @@ class App extends Component {
                   otherUsers={this.state.otherUsers}
                   handleAddFriend={this.handleAddFriend}
                   myFriends={this.state.myFriends}
+                  myRooms={this.state.myRooms}
+                  cableApp={this.props.cableApp}
+                  updateApp={this.updateAppStateRoom}
+                  getRoomData={this.getRoomData}
+                  roomData={this.state.currentRoom}
+                  currentUser={this.state.currentUser}
                 />
               )} 
             />
@@ -297,7 +342,7 @@ class App extends Component {
             )} /> */}
             {/* <Route exact path='/rooms/:id' render={ (props) => {
               return this.state.currentUser ?
-              (<RoomShow
+              (<ChatRoom
                 {...props}
                 cableApp={this.props.cableApp}
                 getRoomData={this.getRoomData}
