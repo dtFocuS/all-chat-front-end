@@ -44,7 +44,7 @@ class Home extends Component {
             let findRooms = this.props.myRooms.filter(room => room.id === this.state.curRoom);
             console.log(findRooms)
             room = findRooms.map(room => {
-                return <ChatRoom friend={this.state.friend} key={room.id} room={room} cableApp={this.props.cableApp} updateApp={this.props.updateApp} getRoomData={this.props.getRoomData} roomData={this.props.roomData}/>
+                return <ChatRoom friend={this.state.friend} currentUser={this.props.currentUser} key={room.id} room={room} cableApp={this.props.cableApp} updateApp={this.props.updateApp} getRoomData={this.props.getRoomData} roomData={this.props.roomData}/>
             })
         }
         return room;

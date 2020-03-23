@@ -11,44 +11,44 @@ class ChatRoom extends Component {
     constructor() {
         super()
         this.state = {
-            newMesssage: ""
+            newMessage: ""
         }
+    }
+
+    handleChange = (event) => {
+        
+        this.setState({
+            newMessage: event.target.value
+        })
+        console.log(this.state.newMessage)
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
 
-        this.setState({
-            newMessage: ''
-        })
+        // this.setState({
+        //     newMessage: ''
+        // })
+        console.log(this.state.newMessage)
 
-        const message = {
-            content: this.state.newMessage,
-            user_id: this.props.currentUser.id,
-            room_id: this.props.roomData.room.id
-        }
+        // const message = {
+        //     content: this.state.newMessage,
+        //     user_id: this.props.currentUser.id,
+        //     room_id: this.props.roomData.room.id
+        // }
 
-        fetch(localHost + "api/v1/messages", {
+        fetch(localHost + 'api/v1/messages', {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
+                "Content-Type": "application/json"
+                // Accept: "application/json"
             },
-            body: JSON.stringify({message: message})
+            body: JSON.stringify({ message: { content: this.state.newMessage, user_id: this.props.currentUser.id, room_id: this.props.roomData.room.id }})
         })
-        .then(resp => resp.json())
-        .then(result => {
-            let messageDiv = document.getElementById('messages')
-            messageDiv.scrollTop = messageDiv.scrollHeight
-        })
+        
     }
 
-    handleChange = (event) => {
-        console.log(event.target.value)
-        this.setState = (prevState => ({
-            newMessage: event.target.value
-        }))
-    }
+    
 
     
 

@@ -268,22 +268,24 @@ class App extends Component {
     fetch(localHost + `api/v1/rooms/${id}`)
     .then(resp => resp.json())
     .then(result => {
-      console.log("room data result" + result);
+      console.log(result.room);
       this.setState({
         currentRoom: {
-          room: result.data,
-          users: result.data.attributes.users,
-          messages: result.data.attributes.messages
+          room: result.room,
+          // users: result.data.users,
+          // messages: result.messages
         }
       })
     })
   }
 
   updateAppStateRoom = (newRoom) => {
+    console.log(newRoom.room)
+    console.log(this.state.currentRoom.room)
     this.setState({
       currentRoom: {
-        room: newRoom.room.data,
-        users: newRoom.users,
+        room: newRoom.room,
+        // users: newRoom.users,
         messages: newRoom.messages
       }
     })

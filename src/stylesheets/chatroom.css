@@ -23,7 +23,7 @@
 
 /* need adjusting */
 #messages {
-    height: 350px;
+    height: 100%;
     overflow-y: scroll;
     background-color: lightgray;
   }
@@ -57,6 +57,6 @@
   }
   
   .other-user-message {
-    background-color: lightgreen;
+    background-color: lightcoral;
     margin-left: 2.5%;
   }

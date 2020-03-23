@@ -11,15 +11,15 @@ class ChatFeed extends Component {
 
     displayMessages = (messages) => {
         return messages.map(message => {
-            const avatar = this.whichAvatar(message)
-            return <ChatMessage key={message.id} message={message} avatar={avatar} currentUser={this.props.currentUser}/>
+            // const avatar = this.whichAvatar(message)
+            return <ChatMessage key={message.id} message={message} currentUser={this.props.currentUser}/>
         }) 
     }
 
-    whichAvatar = (message) => {
-        const user = this.props.room.attributes.users.data.find(user => parseInt(user.id) === message.user_id )
-        return user.attributes.avatar_url
-    }
+    // whichAvatar = (message) => {
+    //     const user = this.props.room.attributes.users.data.find(user => parseInt(user.id) === message.user_id )
+    //     return user.attributes.avatar_url
+    // }
 
 
     render() {
@@ -28,8 +28,8 @@ class ChatFeed extends Component {
 
             <div className='chat-feed'>
                 <div id='messages'>
-                    { this.props.room.attributes.messages ? (
-                        this.displayMessages(this.props.room.attributes.messages)
+                    { this.props.room.messages ? (
+                        this.displayMessages(this.props.room.messages)
                     ) : (
                         <h3>This room has no messages yet - be the first to post!</h3>
                     ) }
