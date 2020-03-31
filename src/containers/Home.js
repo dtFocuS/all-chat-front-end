@@ -39,7 +39,7 @@ class Home extends Component {
     handleGetRoom = (id) => {
         this.setState(prevState => ({
             curRoom: id
-        }))
+        }), () => {console.log(id)})
     }
 
     handleGetFriend = (friend) => {
@@ -68,7 +68,7 @@ class Home extends Component {
                 <SearchModal handleJoinRoom={this.props.handleJoinRoom} handleModal={this.handleModal} modalShow={this.state.modalShow} otherRooms={this.props.otherRooms}/>
                 <CreateModal handleCreateModal={this.handleCreateModal} modalShow={this.state.createShow} handleCreateRoom={this.props.handleCreateRoom}/>
                 <SideNav currentUser={this.props.currentUser} logOut={this.props.logOut} handleModal={this.handleModal} handleCreateModal={this.handleCreateModal}/>
-                <ChatRoomList />
+                <ChatRoomList myRooms={this.props.myRooms} handleGetRoom={this.handleGetRoom}/>
                 {/* <FriendsList handleGetFriend={this.handleGetFriend} handleGetRoom={this.handleGetRoom} myRooms={this.props.myRooms} myFriends={this.props.myFriends}/> */}
                 { this.state.curRoom ? this.showRoom() : <h1 className="empty-chat-message">Search or click on friends to start chatting!</h1>}
             </div>

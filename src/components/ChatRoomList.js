@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import '../stylesheets/friends.css';
 import { Form, Button, ListGroup } from 'react-bootstrap';
-import FriendBar from './FriendBar';
+// import FriendBar from './FriendBar';
+import ChatRoomBar from './ChatRoomBar';
 
 class ChatRoomList extends Component {
 
@@ -9,18 +10,18 @@ class ChatRoomList extends Component {
         super()
     }
 
-    showFriends = () => {
-        let showFriends = null;
+    showMyRooms = () => {
+        let showMyRooms = null;
 
-        if (this.props.myFriends) {
-            showFriends = this.props.myFriends.map(friend => {
-                let room1 = this.props.myRooms.filter(room => room.friend_id === friend.id);
-                let room2 = this.props.myRooms.filter(room => room.user_id === friend.id);
-                return <FriendBar handleGetFriend={this.props.handleGetFriend} key={friend.id} friend={friend} room={ room1.length > 0 ? room1[0] : room2[0]} handleGetRoom={this.props.handleGetRoom}/>
+        if (this.props.myRooms) {
+            showMyRooms = this.props.myRooms.map(room => {
+                // let room1 = this.props.myRooms.filter(room => room.friend_id === friend.id);
+                // let room2 = this.props.myRooms.filter(room => room.user_id === friend.id);
+                return <ChatRoomBar key={room.id} room={room} handleGetRoom={this.props.handleGetRoom}/>
             })
         }
 
-        return showFriends;
+        return showMyRooms;
     }
 
 
@@ -33,7 +34,7 @@ class ChatRoomList extends Component {
             <div className='chat-list-container'>
                 <ListGroup>
                     {
-                        this.props.myFriends ? this.showFriends() : null
+                        this.props.myRooms ? this.showMyRooms() : null
                     }
                 </ListGroup>
                 

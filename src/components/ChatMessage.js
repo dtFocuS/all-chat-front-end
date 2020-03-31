@@ -19,7 +19,7 @@ class ChatMessage extends Component {
         return (
             <div id="chat-message" className={this.whichUser()}>
                 <h4>{this.props.message.content}</h4>
-                {/* <img src={localHost + `api/v1/${this.props.avatar}`} alt="message author's avatar"/> */}
+                {/* <img src={this.props.currentUser.avatar} alt="message author's avatar"/> */}
             </div>     
         )
     }

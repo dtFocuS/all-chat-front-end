@@ -27,7 +27,7 @@ class ChatFeed extends Component {
         return(
 
             <div className='chat-feed'>
-                <div id='messages'>
+                <div id='messages' className='chat-display'>
                     { this.props.room.messages ? (
                         this.displayMessages(this.props.room.messages)
                     ) : (

@@ -162,7 +162,7 @@ class App extends Component {
     // this.loadNotYetFriends();
     // this.loadMyFriends();
     this.loadAllRooms();
-    this.loadOtherRooms();
+    // this.loadOtherRooms();
     this.loadMyRooms();
   }
 
@@ -188,7 +188,9 @@ class App extends Component {
     fetch(localHost + 'api/v1/rooms') 
     .then(resp => resp.json())
     .then(json => {
-      console.log(json)
+      this.setState({
+        allRooms: json,
+      }, () => { this.loadOtherRooms() })
     })
   }
 
@@ -196,17 +198,25 @@ class App extends Component {
 
     fetch(localHost + 'api/v1/user_rooms')
     .then(resp => resp.json())
-    .then(result => {
-      console.log(result)
-      const otherRooms = result.filter(
-        userRoom => userRoom.user_id == this.state.currentUser.id
-      );
+    .then(json => {
+      // console.log(result)
+      const otherRooms = json.filter(userRoom => userRoom.user_id !== this.state.currentUser.id);
 
-      
-      console.log(otherRooms)
-      this.setState({
-       
-      })
+      const result = [];
+      if (this.state.allRooms && otherRooms.length > 0) {
+        
+        this.state.allRooms.forEach(room => {
+          otherRooms.forEach(otherRoom => {
+            console.log(otherRoom)
+            if (otherRoom.room_id === room.id) {
+              result.push(room);
+            }
+          })
+        })
+      }
+      this.setState(prevState => ({
+       otherRooms: result,
+      }), () => {console.log(this.state.otherRooms)})
     })
 
 
@@ -307,12 +317,12 @@ class App extends Component {
     fetch(localHost + `api/v1/rooms/${id}`)
     .then(resp => resp.json())
     .then(result => {
-      console.log(result.room);
+      console.log(result.room.users);
       this.setState({
         currentRoom: {
           room: result.room,
-          // users: result.data.users,
-          // messages: result.messages
+          users: result.room.users,
+          messages: result.room.messages
         }
       })
     })
@@ -324,7 +334,7 @@ class App extends Component {
     this.setState({
       currentRoom: {
         room: newRoom.room,
-        // users: newRoom.users,
+        users: newRoom.users,
         messages: newRoom.messages
       }
     })

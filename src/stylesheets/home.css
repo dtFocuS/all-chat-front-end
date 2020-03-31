@@ -89,3 +89,14 @@
 .chat-list-container {
     background-color: lightpink;
 }
+
+.chat-room-bar {
+    height: 130px;
+    position: relative;
+}
+
+.chat-room-bar h2 {
+    position: absolute;
+    right: 20%;
+    top: 30%;
+}
