@@ -6,7 +6,8 @@ class ChatFeed extends Component {
 
     componentDidUpdate() {
         let messageDiv = document.getElementById('messages')
-        messageDiv.scrollToTop = messageDiv.scrollHeight
+        // messageDiv.scrollToBottom = messageDiv.scrollHeight
+        messageDiv.scrollTop = messageDiv.scrollHeight - messageDiv.clientHeight;
     }
 
     displayMessages = (messages) => {

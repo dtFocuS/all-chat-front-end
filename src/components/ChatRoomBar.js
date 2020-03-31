@@ -22,7 +22,7 @@ class ChatRoomBar extends Component {
                 <ListGroup.Item variant="warning" onClick={this.handleClick}>
                     <div className="container-image-name">
                         {/* <Image src={this.props.friend.avatar} roundedCircle /> */}
-                        <h2>{this.props.room.name}</h2>
+                        <h2># {this.props.room.name}</h2>
 
                     </div>
                     

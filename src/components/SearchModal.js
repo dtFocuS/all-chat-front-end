@@ -12,7 +12,7 @@ class SearchModal extends Component {
         super(props);
 
         this.state = {
-          selectedUser: null,
+          selectedRoom: null,
         }
 
     }
@@ -45,15 +45,15 @@ class SearchModal extends Component {
 
     // data = this.props.otherUsers
 
-    handleAdd = () => {
+    handleJoin = () => {
       
       this.props.handleModal();
-      this.props.handleAddFriend(this.state.selectedUser);
+      this.props.handleJoinRoom(this.state.selectedRoom.id);
     }
 
     handleSelect = (record) => {
       this.setState(prevState => ({
-        selectedUser: record
+        selectedRoom: record
       }))
     }
 
@@ -84,7 +84,7 @@ class SearchModal extends Component {
 
                 <Modal.Footer>
                     <Button variant="secondary" onClick={this.props.handleModal}>Cancel</Button>
-                    <Button variant="primary" onClick={this.handleAdd}>Join Chat Room</Button>
+                    <Button variant="primary" onClick={this.handleJoin}>Join Chat Room</Button>
                 </Modal.Footer>
             </Modal>
 

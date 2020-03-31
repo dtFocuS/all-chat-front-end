@@ -353,25 +353,27 @@ class App extends Component {
     .then(json => {
       this.setState(prevState => ({
         // myRooms: [...prevState.myRooms, json.room]
-      }, this.handleJoinRoom(json.room)))
+      }, this.handleJoinRoom(json.room.id)))
     })
     
   }
 
-  handleJoinRoom = (room) => {
-    console.log(room)
+  handleJoinRoom = (roomId) => {
+    console.log(roomId)
     fetch(localHost + 'api/v1/user_rooms', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-        body: JSON.stringify({ user_room: { user_id: this.state.currentUser.id, room_id: room.id}})
+        body: JSON.stringify({ user_room: { user_id: this.state.currentUser.id, room_id: roomId}})
     })
     .then(resp => resp.json())
     .then(json => {
+      const joinedRoom = this.state.otherRooms.filter(otherRoom => otherRoom.id === roomId)
+      console.log(joinedRoom)
       this.setState(prevState => ({
-        otherRooms: prevState.otherRooms.filter( otherRoom => otherRoom.id !== room.id),
-        myRooms: [...prevState.myRooms, room]
+        otherRooms: prevState.otherRooms.filter( otherRoom => otherRoom.id !== roomId),
+        myRooms: [...prevState.myRooms, joinedRoom[0]]
       }), () => {})
     })
 

@@ -45,7 +45,9 @@ class ChatRoom extends Component {
             },
             body: JSON.stringify({ message: { content: this.state.newMessage, user_id: this.props.currentUser.id, room_id: this.props.roomData.room.id }})
         })
-        
+        this.setState({
+            newMessage: ""
+        })
     }
 
     
