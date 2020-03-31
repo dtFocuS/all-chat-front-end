@@ -60,22 +60,22 @@ class SearchModal extends Component {
 
     render() {
         
-        const data = this.props.otherUsers.map( user => {
+        const data = this.props.otherRooms.map( room => {
           return {
-            id: user.id,
-            key: user.username,
-            value: user.username
+            id: room.id,
+            key: room.name,
+            value: room.name
           }
         })
         return(
 
             <Modal show={this.props.modalShow} className='for-modal'>
                 <Modal.Header closeButton onClick={this.props.handleModal}>
-                    <Modal.Title className="modal-title">Search Friend</Modal.Title>
+                    <Modal.Title className="modal-title">Search For Chat Room</Modal.Title>
                 </Modal.Header>
 
                 <ReactSearchBox
-                    placeholder="Search Friend"
+                    placeholder="Search For Chat Room"
                     value=""
                     data={data}
                     callback={record => console.log(record)}
@@ -84,7 +84,7 @@ class SearchModal extends Component {
 
                 <Modal.Footer>
                     <Button variant="secondary" onClick={this.props.handleModal}>Cancel</Button>
-                    <Button variant="primary" onClick={this.handleAdd}>Add Friend</Button>
+                    <Button variant="primary" onClick={this.handleAdd}>Join Chat Room</Button>
                 </Modal.Footer>
             </Modal>
 

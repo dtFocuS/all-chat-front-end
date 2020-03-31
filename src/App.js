@@ -15,6 +15,8 @@ const initialState = {
   isLoggedIn: false,
   currentUser: '',
   otherUsers: [],
+  otherRooms: [],
+  allRooms: [],
   notYetFriends: [],
   myFriends: [],
   myRooms: [],
@@ -33,8 +35,10 @@ class App extends Component {
       isLoggedIn: false,
       currentUser: '',
       otherUsers: [],
-      notYetFriends: [],
-      myFriends: [],
+      otherRooms: [],
+      allRooms:[],
+      // notYetFriends: [],
+      // myFriends: [],
       myRooms: [],
       currentRoom: {
         room: {}, 
@@ -155,53 +159,88 @@ class App extends Component {
   loadData = () => {
     console.log(this.state.currentUser);
     this.loadOtherUsers();
-    this.loadNotYetFriends();
-    this.loadMyFriends();
+    // this.loadNotYetFriends();
+    // this.loadMyFriends();
+    this.loadAllRooms();
+    this.loadOtherRooms();
     this.loadMyRooms();
   }
 
   loadMyRooms = () => {
+    if (this.state.currentUser) {
+      this.setState({
+        myRooms: this.state.currentUser.rooms
+      }, () => {console.log(this.state.currentUser.rooms)})
+    }
     
     // console.log(this.state.currentUser.rooms)
-    fetch(localHost + 'api/v1/rooms')
+    // fetch(localHost + 'api/v1/rooms')
+    // .then(resp => resp.json())
+    // .then(json => {
+    //   const myRooms = json.filter(room => room.friend_id === this.state.currentUser.id)
+    //   this.setState(prevState => ({
+    //     myRooms: [...prevState.myRooms, ...myRooms, ...this.state.currentUser.rooms]
+    //   }), (() => console.log("my rooms: " + this.state.myRooms)))
+    // })
+  }
+
+  loadAllRooms = () => {
+    fetch(localHost + 'api/v1/rooms') 
     .then(resp => resp.json())
     .then(json => {
-      const myRooms = json.filter(room => room.friend_id === this.state.currentUser.id)
-      this.setState(prevState => ({
-        myRooms: [...prevState.myRooms, ...myRooms, ...this.state.currentUser.rooms]
-      }), (() => console.log("my rooms: " + this.state.myRooms)))
+      console.log(json)
     })
   }
 
-  loadMyFriends = () => {
-    fetch(localHost + 'api/v1/friendships')
+  loadOtherRooms = () => {
+
+    fetch(localHost + 'api/v1/user_rooms')
     .then(resp => resp.json())
-    .then(json => {
-      this.setState(prevState => ({
-        myFriends: this.state.currentUser.friends
-      }))
+    .then(result => {
+      console.log(result)
+      const otherRooms = result.filter(
+        userRoom => userRoom.user_id == this.state.currentUser.id
+      );
 
-      // const myFriends = this.state.otherUsers
-      // this.setState(prevState => ({
-
-      // }))
-    })
-  }
-
-  loadNotYetFriends = () => {
-    fetch(localHost + 'api/v1/friendships')
-    .then(resp => resp.json())
-    .then(json => {
-      const friends = json.filter(friend => friend.user_id !== this.state.currentUser.id);
-      const notYetFriends = friends.filter(friend => friend.friend_id !== this.state.currentUser.id)
-      // console.log(notYetFriends)
-      // const myFriends = this.state.otherUsers
-      // this.setState(prevState => ({
-
-      // }))
+      
+      console.log(otherRooms)
+      this.setState({
+       
+      })
     })
 
+
+    
   }
+  // loadMyFriends = () => {
+  //   fetch(localHost + 'api/v1/friendships')
+  //   .then(resp => resp.json())
+  //   .then(json => {
+  //     this.setState(prevState => ({
+  //       myFriends: this.state.currentUser.friends
+  //     }))
+
+  //     // const myFriends = this.state.otherUsers
+  //     // this.setState(prevState => ({
+
+  //     // }))
+  //   })
+  // }
+
+  // loadNotYetFriends = () => {
+  //   fetch(localHost + 'api/v1/friendships')
+  //   .then(resp => resp.json())
+  //   .then(json => {
+  //     const friends = json.filter(friend => friend.user_id !== this.state.currentUser.id);
+  //     const notYetFriends = friends.filter(friend => friend.friend_id !== this.state.currentUser.id)
+  //     // console.log(notYetFriends)
+  //     // const myFriends = this.state.otherUsers
+  //     // this.setState(prevState => ({
+
+  //     // }))
+  //   })
+
+  // }
 
  
   logOut = () => {
@@ -222,47 +261,47 @@ class App extends Component {
     localStorage.setItem("jwt", "");
   }
 
-  handleAddFriend = (friend) => {
-    console.log(friend);
+  // handleAddFriend = (friend) => {
+  //   console.log(friend);
 
-    fetch(localHost + 'api/v1/friendships', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ friendship: { user_id: this.state.currentUser.id, friend_id: friend.id }})
-    })
-    .then(resp => resp.json())
-    .then(json => {
-      // const friendship = json[0].friend_id;
-      console.log(json[0].friend_id)
-      const friend = this.state.otherUsers.filter(user => user.id === json[0].friend_id)
+  //   fetch(localHost + 'api/v1/friendships', {
+  //     method: 'POST',
+  //     headers: {
+  //         'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({ friendship: { user_id: this.state.currentUser.id, friend_id: friend.id }})
+  //   })
+  //   .then(resp => resp.json())
+  //   .then(json => {
+  //     // const friendship = json[0].friend_id;
+  //     console.log(json[0].friend_id)
+  //     const friend = this.state.otherUsers.filter(user => user.id === json[0].friend_id)
 
-      this.setState(prevState => ({
-        myFriends: [...prevState.myFriends, friend[0]],
-        notYetFriends: [...prevState.notYetFriends].filter(user => user.id !== json[0].friend_id)
-      }), (() => {this.createRoom(this.state.currentUser, friend[0], json[0].id)}))
+  //     this.setState(prevState => ({
+  //       myFriends: [...prevState.myFriends, friend[0]],
+  //       notYetFriends: [...prevState.notYetFriends].filter(user => user.id !== json[0].friend_id)
+  //     }), (() => {this.createRoom(this.state.currentUser, friend[0], json[0].id)}))
       
-    })
+  //   })
     
-  }
+  // }
 
-  createRoom = (user, friend, friendshipId) => {
-    const name = "" + friendshipId + " " + user.id + " " + friend.id;
-    fetch(localHost + 'api/v1/rooms', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ room: { name: name, user_id: user.id, friend_id: friend.id}})
-    })
-    .then(resp => resp.json())
-    .then(json => {
-      this.setState(prevState => ({
-        myRooms: [...prevState.myRooms, json.room]
-      }), (() => {console.log(this.state.myRooms)}))
-    })
-  }
+  // createRoom = (user, friend, friendshipId) => {
+  //   const name = "" + friendshipId + " " + user.id + " " + friend.id;
+  //   fetch(localHost + 'api/v1/rooms', {
+  //     method: 'POST',
+  //     headers: {
+  //         'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({ room: { name: name, user_id: user.id, friend_id: friend.id}})
+  //   })
+  //   .then(resp => resp.json())
+  //   .then(json => {
+  //     this.setState(prevState => ({
+  //       myRooms: [...prevState.myRooms, json.room]
+  //     }), (() => {console.log(this.state.myRooms)}))
+  //   })
+  // }
 
   getRoomData = (id) => {
     fetch(localHost + `api/v1/rooms/${id}`)
@@ -289,6 +328,43 @@ class App extends Component {
         messages: newRoom.messages
       }
     })
+  }
+
+  handleCreateRoom = (chatName) => {
+    console.log(chatName)
+    fetch(localHost + 'api/v1/rooms', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+        body: JSON.stringify({ room: { name: chatName}})
+    })
+    .then(resp => resp.json())
+    .then(json => {
+      this.setState(prevState => ({
+        // myRooms: [...prevState.myRooms, json.room]
+      }, this.handleJoinRoom(json.room)))
+    })
+    
+  }
+
+  handleJoinRoom = (room) => {
+    console.log(room)
+    fetch(localHost + 'api/v1/user_rooms', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+        body: JSON.stringify({ user_room: { user_id: this.state.currentUser.id, room_id: room.id}})
+    })
+    .then(resp => resp.json())
+    .then(json => {
+      this.setState(prevState => ({
+        otherRooms: prevState.otherRooms.filter( otherRoom => otherRoom.id !== room.id),
+        myRooms: [...prevState.myRooms, room]
+      }), () => {})
+    })
+
   }
 
 
@@ -325,7 +401,9 @@ class App extends Component {
                   currentUser={this.state.currentUser}
                   logOut={this.logOut}
                   otherUsers={this.state.otherUsers}
-                  handleAddFriend={this.handleAddFriend}
+                  otherRooms={this.state.otherRooms}
+                  handleJoinRoom={this.handleJoinRoom}
+                  handleCreateRoom={this.handleCreateRoom}
                   myFriends={this.state.myFriends}
                   myRooms={this.state.myRooms}
                   cableApp={this.props.cableApp}

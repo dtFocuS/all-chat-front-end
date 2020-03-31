@@ -4,6 +4,8 @@ import FriendsList from '../components/FriendsList';
 import ChatRoom from '../components/ChatRoom';
 import SideNav from '../components/SideNav';
 import SearchModal from '../components/SearchModal';
+import CreateModal from '../components/CreateModal';
+import ChatRoomList from '../components/ChatRoomList';
 
 
 
@@ -14,6 +16,7 @@ class Home extends Component {
         super(props);
         this.state = {
             modalShow: false,
+            createShow: false,
             curRoom: null,
             friend: null,
         }
@@ -24,6 +27,13 @@ class Home extends Component {
             modalShow: !prevState.modalShow
         }))
         // console.log(this.state.modalShow)
+    }
+
+    handleCreateModal = () => {
+        console.log("ok")
+        this.setState(prevState => ({
+            createShow: !prevState.createShow
+        }))
     }
 
     handleGetRoom = (id) => {
@@ -55,9 +65,11 @@ class Home extends Component {
     render() {
         return(
             <div className='home-container'>
-                <SearchModal handleAddFriend={this.props.handleAddFriend} handleModal={this.handleModal} modalShow={this.state.modalShow} otherUsers={this.props.otherUsers}/>
-                <SideNav logOut={this.props.logOut} handleModal={this.handleModal}/>
-                <FriendsList handleGetFriend={this.handleGetFriend} handleGetRoom={this.handleGetRoom} myRooms={this.props.myRooms} myFriends={this.props.myFriends}/>
+                <SearchModal handleJoinRoom={this.props.handleJoinRoom} handleModal={this.handleModal} modalShow={this.state.modalShow} otherRooms={this.props.otherRooms}/>
+                <CreateModal handleCreateModal={this.handleCreateModal} modalShow={this.state.createShow} handleCreateRoom={this.props.handleCreateRoom}/>
+                <SideNav currentUser={this.props.currentUser} logOut={this.props.logOut} handleModal={this.handleModal} handleCreateModal={this.handleCreateModal}/>
+                <ChatRoomList />
+                {/* <FriendsList handleGetFriend={this.handleGetFriend} handleGetRoom={this.handleGetRoom} myRooms={this.props.myRooms} myFriends={this.props.myFriends}/> */}
                 { this.state.curRoom ? this.showRoom() : <h1 className="empty-chat-message">Search or click on friends to start chatting!</h1>}
             </div>
         )

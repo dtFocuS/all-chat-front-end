@@ -19,6 +19,22 @@
     
 }
 
+.profile-pic {
+    margin-top: 20%;
+    /* background-color: lightblue; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: vertical;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.profile-pic p {
+    margin-top: 45%;
+    font-weight: bold;
+}
+
 .for-menu-items {
     height: 50%;
     display: flex;
@@ -29,7 +45,8 @@
 }
 
 .for-menu-items a {
-    margin-bottom: 50px;;
+    margin-top: 20px;
+    margin-bottom: 40px;;
     font-size: 30px;
     color: lightskyblue;
     font-weight: bold;
@@ -69,3 +86,6 @@
     font-weight: bold;
 }
 
+.chat-list-container {
+    background-color: lightpink;
+}

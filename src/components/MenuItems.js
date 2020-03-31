@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import { Form, Button, ListGroup, Image, Badge, Figure } from 'react-bootstrap';
+import ProfilePic from './ProfilePic';
+
 
 
 
@@ -12,6 +15,12 @@ class MenuItems extends Component {
     handleOpenAndClose = () => {
         this.props.handleOpen();
         this.props.handleModal();
+    }
+
+    handleCreateModalOpenOrClose = () => {
+        this.props.handleOpen();
+        this.props.handleCreateModal();
+
     }
 
     // logOut = () => {
@@ -29,8 +38,12 @@ class MenuItems extends Component {
         // }
         return(
             <React.Fragment>
+                <ProfilePic currentUser={this.props.currentUser}/>
+                <a href="#" onClick={this.handleCreateModalOpenOrClose}>
+                    Create Channel
+                </a>
                 <a href="#" onClick={this.handleOpenAndClose}>
-                    Add Friend
+                    Search Channel
                 </a>
                 
                 <Link to='/'><a href='#' onClick={this.props.logOut} >Logout</a></Link>
