@@ -54,7 +54,7 @@ class Home extends Component {
             let findRooms = this.props.myRooms.filter(room => room.id === this.state.curRoom);
             console.log(findRooms)
             room = findRooms.map(room => {
-                return <ChatRoom friend={this.state.friend} currentUser={this.props.currentUser} key={room.id} room={room} cableApp={this.props.cableApp} updateApp={this.props.updateApp} getRoomData={this.props.getRoomData} roomData={this.props.roomData}/>
+                return <ChatRoom otherUsers={this.props.otherUsers} currentUser={this.props.currentUser} key={room.id} room={room} cableApp={this.props.cableApp} updateApp={this.props.updateApp} getRoomData={this.props.getRoomData} roomData={this.props.roomData}/>
             })
         }
         return room;
@@ -68,9 +68,9 @@ class Home extends Component {
                 <SearchModal handleJoinRoom={this.props.handleJoinRoom} handleModal={this.handleModal} modalShow={this.state.modalShow} otherRooms={this.props.otherRooms}/>
                 <CreateModal handleCreateModal={this.handleCreateModal} modalShow={this.state.createShow} handleCreateRoom={this.props.handleCreateRoom}/>
                 <SideNav currentUser={this.props.currentUser} logOut={this.props.logOut} handleModal={this.handleModal} handleCreateModal={this.handleCreateModal}/>
-                <ChatRoomList myRooms={this.props.myRooms} handleGetRoom={this.handleGetRoom}/>
+                <ChatRoomList myRooms={this.props.myRooms} handleGetRoom={this.handleGetRoom} selectedRoomId={this.state.curRoom}/>
                 {/* <FriendsList handleGetFriend={this.handleGetFriend} handleGetRoom={this.handleGetRoom} myRooms={this.props.myRooms} myFriends={this.props.myFriends}/> */}
-                { this.state.curRoom ? this.showRoom() : <h1 className="empty-chat-message">Search or click on friends to start chatting!</h1>}
+                { this.state.curRoom ? this.showRoom() : <h1 className="empty-chat-message">Search or create chat room to start chatting!</h1>}
             </div>
         )
     }

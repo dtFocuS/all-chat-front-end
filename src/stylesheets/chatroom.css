@@ -15,9 +15,13 @@
     backgroud-color: pink;
 }
 
+.chat-room {
+  border: 0.5px solid rgb(196, 194, 194);
+}
+
 .chat-feed {
     height: 75%;
-    background-color:#DDEBF3;
+    /* background-color:rgb(245, 248, 250); */
     margin: 20px;
     
 }
@@ -27,14 +31,15 @@
 #messages {
     height: 690px;
     overflow-y: scroll;
-    background-color: lightgray;
+    border: 1px solid rgb(196, 194, 194);
+    /* background-color: rgb(235, 226, 226); */
   }
   
   #chat-message {
     margin-top: 2.5%;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 3px 3px black;
+    /* box-shadow: 3px 3px black; */
     width: 45%;
   }
   
@@ -54,11 +59,11 @@
   
   .current-user-message {
     background-color: lightskyblue;
-    margin-right: 2.5%;
-    margin-left: 45%;
+    margin-right: 3%;
+    margin-left: 52%;
   }
   
   .other-user-message {
-    background-color: lightcoral;
-    margin-left: 2.5%;
+    background-color: lightpink;
+    margin-left: 3%;
   }

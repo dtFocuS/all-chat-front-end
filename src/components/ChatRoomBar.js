@@ -18,9 +18,9 @@ class ChatRoomBar extends Component {
 
         return(
 
-            <div className='chat-room-bar'>
-                <ListGroup.Item variant="warning" onClick={this.handleClick}>
-                    <div className="container-image-name">
+            <div className='chat-room-bar' >
+                <ListGroup.Item variant="light" onClick={this.handleClick} >
+                    <div className={this.props.selectedRoomId === this.props.room.id? 'container-image-name selected' : 'container-image-name'}>
                         {/* <Image src={this.props.friend.avatar} roundedCircle /> */}
                         <h2># {this.props.room.name}</h2>
 

@@ -12,8 +12,9 @@ class ChatFeed extends Component {
 
     displayMessages = (messages) => {
         return messages.map(message => {
-            // const avatar = this.whichAvatar(message)
-            return <ChatMessage key={message.id} message={message} currentUser={this.props.currentUser}/>
+            const otherUser = this.props.otherUsers.filter(otherUser => otherUser.id === message.user_id)
+            // const curUser = this.props.
+            return <ChatMessage key={message.id} message={message} currentUser={this.props.currentUser} otherUser={otherUser}/>
         }) 
     }
 
@@ -32,7 +33,7 @@ class ChatFeed extends Component {
                     { this.props.room.messages ? (
                         this.displayMessages(this.props.room.messages)
                     ) : (
-                        <h3>This room has no messages yet - be the first to post!</h3>
+                        <h4>This room has no messages yet - be the first to post!</h4>
                     ) }
                 </div>
 

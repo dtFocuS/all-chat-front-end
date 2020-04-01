@@ -1,16 +1,18 @@
 .home-container {
-    background: lightblue;
+    /* background: lightblue; */
     display: grid;
     grid-template-columns: 30% auto;
     height: 95vh;
     margin: 20px;
     position: relative;
+    border: 1px solid gray;
 }
 
 .side-nav {
     position: fixed;
     height: 95%;
-    background-color: rgba(253, 250, 250, 0.959);
+    /* background-color: rgba(129, 58, 123, 0.856); */
+    background-color:#004085;
     z-index: 1;
     /* transition: 0.7s; */
 
@@ -20,23 +22,35 @@
 }
 
 .profile-pic {
-    margin-top: 20%;
+    /* margin-top: 20%; */
+    padding-top: 20%;
     /* background-color: lightblue; */
     width: 100%;
     height: 100%;
-    display: flex;
+    /* display: flex;
     flex-direction: vertical;
-    /* align-items: center; */
-    justify-content: center;
+    align-items: center;
+    justify-content: center; */
+}
+
+.profile-pic img {
+    height: 70%;
+    margin: 0 auto;
+    width: 50%;
+    display: block;
 }
 
 .profile-pic p {
-    margin-top: 45%;
+    margin-top: 5%;
     font-weight: bold;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    color: lightskyblue;
 }
 
 .for-menu-items {
-    height: 50%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,7 +59,7 @@
 }
 
 .for-menu-items a {
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 40px;;
     font-size: 30px;
     color: lightskyblue;
@@ -87,12 +101,15 @@
 }
 
 .chat-list-container {
-    background-color: lightpink;
+    background-color: rgb(245, 243, 243);
 }
 
+
+/* for chat room list items*/
 .chat-room-bar {
     height: 130px;
     position: relative;
+    
 }
 
 .chat-room-bar h2 {
@@ -102,4 +119,26 @@
     text-align: center;
     padding-top: 30px;
     font-weight: bold;
+    
 }
+
+.selected {
+    color: #004085;
+    border-right: 4px solid lightblue;
+    /* background-color: rgb(152, 206, 236); */
+}
+
+.container-image-name {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    /* margin: 0 auto; */
+}
+
+.list-group-item {
+    position: relative;
+ 
+    height: 100%;
+    padding: 0 0;
+    cursor: pointer;
+} 
