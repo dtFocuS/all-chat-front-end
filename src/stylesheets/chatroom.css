@@ -51,6 +51,7 @@
 }
 
 #messages {
+    /* height: 690px; */
     height: 690px;
     overflow-y: scroll;
     border: 1px solid rgb(196, 194, 194);
@@ -96,32 +97,60 @@
     word-wrap: break-word;
   }
   
-  .other-user-message {
-    background-color: lightpink;
-    margin-left: 5%;
+.other-user-message {
+  background-color: lightpink;
+  margin-left: 5%;
     /* width: 60px; */
-    word-wrap: break-word;
+  word-wrap: break-word;
+}
+
+
+/* @media screen and (min-height: 1200px) {
+  #messages {
+    height: 1000px;
+  }
+} */
+
+
+@media screen and (min-height: 1200px) {
+  #messages {
+    height: 1000px;
+  }
+
+  .profile-pic {
+    height: 40%;
+  }
+
+  .profile-pic img {
+    height: 60%;
+    width: 60%;
+  }
+
+  .form-group {
+    width: 95%;
+
+    margin: 10% auto 0 auto;
+    position: relative;
   }
 
 
-  @media screen and (min-height: 1100px) {
-    #messages {
-      height: 100%;
-    }
 
-    .profile-pic {
-      height: 40%;
-    }
+}
 
-    .profile-pic img {
-      height: 60%;
-      width: 60%;
-    }
-
-    .form-group {
-      width: 95%;
-      /* height: 100%; */
-      margin: 10% auto 0 auto;
-      position: relative;
+@media screen and (max-height: 950px) {
+  .chat-feed {
+    height: 70%;
   }
+  #messages {
+    height: 100%;
+  }
+
+  .chat-room {
+    height: 95vh;
+  }
+
+  .chat-list-container {
+    height: 95vh;
+  }
+
 }
