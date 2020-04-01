@@ -16,7 +16,9 @@
 }
 
 .chat-room {
+  width: 100%;
   border: 0.5px solid rgb(196, 194, 194);
+  /* border: 1px solid red; */
 }
 
 .chat-room .form-group span {
@@ -31,22 +33,41 @@
     
 }
 
+.chat-room-list::-webkit-scrollbar {
+  display: none;
+}
+
+
+.chat-room-list {
+  overflow-y: scroll;
+  height: 770px;
+}
+
 /* need adjusting */
+
+.chat-display {
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr; */
+}
 
 #messages {
     height: 690px;
     overflow-y: scroll;
     border: 1px solid rgb(196, 194, 194);
+    width: 100%;
+    /* margin-bottom: 10px; */
     /* background-color: rgb(235, 226, 226); */
   }
-  
+.chat-display::-webkit-scrollbar {
+  display: none;
+}
   #chat-message {
     margin-top: 2.5%;
     padding: 15px;
     border-radius: 10px;
     /* box-shadow: 3px 3px black; */
     /* font-family: 'Oswald', sans-serif; */
-    width: 45%;
+    width: 35%;
   }
   
   #chat-message h4 {
@@ -67,11 +88,40 @@
   
   .current-user-message {
     background-color: lightskyblue;
+    /* position: relative; */
     margin-right: 3%;
-    margin-left: 52%;
+    margin-left: 60%;
+    /* width: 60% */
+    /* width: 40%; */
+    word-wrap: break-word;
   }
   
   .other-user-message {
     background-color: lightpink;
-    margin-left: 3%;
+    margin-left: 5%;
+    /* width: 60px; */
+    word-wrap: break-word;
   }
+
+
+  @media screen and (min-height: 1100px) {
+    #messages {
+      height: 100%;
+    }
+
+    .profile-pic {
+      height: 40%;
+    }
+
+    .profile-pic img {
+      height: 60%;
+      width: 60%;
+    }
+
+    .form-group {
+      width: 95%;
+      /* height: 100%; */
+      margin: 10% auto 0 auto;
+      position: relative;
+  }
+}

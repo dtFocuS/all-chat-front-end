@@ -43,10 +43,16 @@ class ChatRoomList extends Component {
                         </ListGroup.Item>
 
                     </div>
-                
+                    <div className="chat-room-list">
                     {
                         this.props.myRooms ? this.showMyRooms() : null
                     }
+
+                    </div>
+                
+                    {/* {
+                        this.props.myRooms ? this.showMyRooms() : null
+                    } */}
                 </ListGroup>
                 
             </div>

@@ -1,11 +1,13 @@
+
 .home-container {
     /* background: lightblue; */
     display: grid;
-    grid-template-columns: 30% auto;
+    grid-template-columns: 30% 70%;
     height: 95vh;
     margin: 20px;
     position: relative;
     border: 1px solid gray;
+    /* width: 80%; */
 }
 
 .side-nav {
