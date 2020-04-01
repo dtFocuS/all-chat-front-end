@@ -46,8 +46,8 @@ class CreateModal extends Component {
 
     // data = this.props.otherUsers
 
-    handleSubmit = () => {
-      
+    handleSubmit = (event) => {
+      event.preventDefault();
       this.props.handleCreateModal();
       this.props.handleCreateRoom(this.state.chatName);
     }

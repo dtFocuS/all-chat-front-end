@@ -13,7 +13,7 @@ class ChatRoomList extends Component {
     showMyRooms = () => {
         let showMyRooms = null;
 
-        if (this.props.myRooms) {
+        if (this.props.myRooms.length > 0) {
             showMyRooms = this.props.myRooms.map(room => {
                 // let room1 = this.props.myRooms.filter(room => room.friend_id === friend.id);
                 // let room2 = this.props.myRooms.filter(room => room.user_id === friend.id);

@@ -16,6 +16,7 @@ const initialState = {
   currentUser: '',
   otherUsers: [],
   otherRooms: [],
+  newCreatedRoom: null,
   allRooms: [],
   notYetFriends: [],
   myFriends: [],
@@ -37,6 +38,7 @@ class App extends Component {
       otherUsers: [],
       otherRooms: [],
       allRooms:[],
+      newCreatedRoom: null,
       // notYetFriends: [],
       // myFriends: [],
       myRooms: [],
@@ -351,9 +353,9 @@ class App extends Component {
     })
     .then(resp => resp.json())
     .then(json => {
-      this.setState(prevState => ({
-        // myRooms: [...prevState.myRooms, json.room]
-      }, this.handleJoinRoom(json.room.id)))
+      this.setState({
+        newCreatedRoom: json.room
+      }, () => {this.handleJoinRoom(json.room.id)})
     })
     
   }
@@ -370,11 +372,11 @@ class App extends Component {
     .then(resp => resp.json())
     .then(json => {
       const joinedRoom = this.state.otherRooms.filter(otherRoom => otherRoom.id === roomId)
-      console.log(joinedRoom)
+      console.log(this.state.newCreatedRoom)
       this.setState(prevState => ({
-        otherRooms: prevState.otherRooms.filter( otherRoom => otherRoom.id !== roomId),
-        myRooms: [...prevState.myRooms, joinedRoom[0]]
-      }), () => {})
+        // otherRooms: prevState.otherRooms.filter( otherRoom => otherRoom.id !== roomId),
+        myRooms: [...prevState.myRooms, this.state.newCreatedRoom]
+      }), this.loadOtherRooms())
     })
 
   }
