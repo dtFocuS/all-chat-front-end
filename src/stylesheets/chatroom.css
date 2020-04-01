@@ -19,6 +19,11 @@
   border: 0.5px solid rgb(196, 194, 194);
 }
 
+.chat-room .form-group span {
+  font-weight: bold;
+  color: #004085;
+}
+
 .chat-feed {
     height: 75%;
     /* background-color:rgb(245, 248, 250); */
@@ -40,16 +45,18 @@
     padding: 15px;
     border-radius: 10px;
     /* box-shadow: 3px 3px black; */
+    /* font-family: 'Oswald', sans-serif; */
     width: 45%;
   }
   
   #chat-message h4 {
     margin: 0;
     padding-top: 10px;
+    padding-bottom: 10px;
   }
   
   #chat-message img {
-    width: 20px;
+    width: 30px;
   }
   
   #chat-message p {

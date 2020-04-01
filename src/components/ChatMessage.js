@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Form, Button, Image } from 'react-bootstrap';
 
 const localHost = "http://localHost:3000/";
 
@@ -19,7 +20,7 @@ class ChatMessage extends Component {
         return (
             <div id="chat-message" className={this.whichUser()}>
                 <h4>{this.props.message.content}</h4>
-                <img src={this.props.otherUser.length > 0 ? this.props.otherUser[0].avatar : this.props.currentUser.avatar} alt="message author's avatar"/><span>@{this.props.otherUser.length > 0 ? this.props.otherUser[0].username : this.props.currentUser.username}</span>
+                <Image src={this.props.otherUser.length > 0 ? this.props.otherUser[0].avatar : this.props.currentUser.avatar} alt="message author's avatar" roundedCircle/><span>@{this.props.otherUser.length > 0 ? this.props.otherUser[0].username : this.props.currentUser.username}</span>
             </div>     
         )
     }
