@@ -9,10 +9,10 @@
     position: relative;
 }
 
-.form-button {
-    /* position: absolute; */
-    /* right: 30px; */
-    backgroud-color: pink;
+.form-group .btn-outline-primary {
+    position: relative;
+    left: 94%;
+    margin-top: 10px;
 }
 
 .chat-room {
@@ -153,4 +153,61 @@
     height: 95vh;
   }
 
+}
+
+@media screen and (max-width: 1680px) {
+  .form-group .btn-outline-primary {
+    position: relative;
+    left: 93%;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .form-group .btn-outline-primary {
+    position: relative;
+    left: 90%;
+    margin-top: 10px;
+  }
+
+}
+
+@media screen and (max-width: 1200px) {
+  .form-group .btn-outline-primary {
+    position: relative;
+    left: 88%;
+    margin-top: 10px;
+  }
+
+}
+
+@media screen and (min-width: 990px) {
+  .chat-room-bar h2 {
+    font-size: 20px;
+  }
+
+  /* .form-group .btn-outline-primary {
+    position: relative;
+    left: 84%;
+    margin-top: 10px;
+  } */
+
+  
+
+}
+
+@media screen and (max-width: 990px) {
+  .form-group .btn-outline-primary {
+    position: relative;
+    left: 84%;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .form-group .btn-outline-primary {
+    position: relative;
+    left: 73%;
+    margin-top: 10px;
+  }
 }

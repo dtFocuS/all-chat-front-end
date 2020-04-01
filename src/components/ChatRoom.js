@@ -66,7 +66,7 @@ class ChatRoom extends Component {
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label><span>#{this.props.room.name}</span></Form.Label>
                     <Form.Control as="textarea" rows="3" className='chat-input-area' value={this.state.newMessage} onChange={this.handleChange}/>
-                    <Button variant="dark" type="submit" className='form-button'>
+                    <Button variant="outline-primary" type="submit" className='form-button'>
                         Submit
                     </Button>
                     </Form.Group>
