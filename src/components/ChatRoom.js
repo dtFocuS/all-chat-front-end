@@ -5,6 +5,7 @@ import ChatFeed from './ChatFeed';
 import RoomWebSocket from './RoomWebSockect';
 
 const localHost = "http://localhost:3000/";
+const URL = "https://all-chat-backend.herokuapp.com/";
 
 class ChatRoom extends Component {
 
@@ -37,7 +38,7 @@ class ChatRoom extends Component {
         //     room_id: this.props.roomData.room.id
         // }
 
-        fetch(localHost + 'api/v1/messages', {
+        fetch(URL + 'api/v1/messages', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

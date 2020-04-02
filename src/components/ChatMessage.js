@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button, Image } from 'react-bootstrap';
 
 const localHost = "http://localHost:3000/";
+const URL = "https://all-chat-backend.herokuapp.com/";
 
 class ChatMessage extends Component {
     

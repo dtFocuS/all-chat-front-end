@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import faker from 'faker';
 
 const localHost = "http://localhost:3000/";
+const URL = "https://all-chat-backend.herokuapp.com/";
 
 const initialState = {
   isLoggedIn: false,
@@ -80,7 +81,7 @@ class App extends Component {
  
 
   loadOtherUsers = () => {
-    fetch(localHost + 'api/v1/users')
+    fetch(URL + 'api/v1/users')
     .then(resp => resp.json())
     .then(json => {
       const otherUsers = json.filter(user => user.id != this.state.currentUser.id)
@@ -118,7 +119,7 @@ class App extends Component {
     // let password = this.state.password;
     console.log(username);
     console.log(password);
-    fetch(localHost + 'api/v1/login', {
+    fetch(URL + 'api/v1/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -142,7 +143,7 @@ class App extends Component {
   // }
   getUser = () => {
     let token = this.getToken()
-    fetch(localHost + 'api/v1/profile', {
+    fetch(URL + 'api/v1/profile', {
       headers: {
         'Authorization': 'Bearer ' + token
       }
@@ -187,7 +188,7 @@ class App extends Component {
   }
 
   loadAllRooms = () => {
-    fetch(localHost + 'api/v1/rooms') 
+    fetch(URL + 'api/v1/rooms') 
     .then(resp => resp.json())
     .then(json => {
       this.setState({
@@ -198,7 +199,7 @@ class App extends Component {
 
   loadOtherRooms = () => {
 
-    fetch(localHost + 'api/v1/user_rooms')
+    fetch(URL + 'api/v1/user_rooms')
     .then(resp => resp.json())
     .then(json => {
       // console.log(result)
@@ -316,7 +317,7 @@ class App extends Component {
   // }
 
   getRoomData = (id) => {
-    fetch(localHost + `api/v1/rooms/${id}`)
+    fetch(URL + `api/v1/rooms/${id}`)
     .then(resp => resp.json())
     .then(result => {
       console.log(result.room.users);
@@ -344,7 +345,7 @@ class App extends Component {
 
   handleCreateRoom = (chatName) => {
     console.log(chatName)
-    fetch(localHost + 'api/v1/rooms', {
+    fetch(URL + 'api/v1/rooms', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -361,7 +362,7 @@ class App extends Component {
   }
 
   joinAfterCreate = (room) => {
-    fetch(localHost + 'api/v1/user_rooms', {
+    fetch(URL + 'api/v1/user_rooms', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -379,7 +380,7 @@ class App extends Component {
 
   handleJoinRoom = (roomId) => {
     console.log(roomId)
-    fetch(localHost + 'api/v1/user_rooms', {
+    fetch(URL + 'api/v1/user_rooms', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

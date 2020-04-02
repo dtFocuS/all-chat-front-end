@@ -4,6 +4,7 @@ import faker from 'faker';
 
 
 const localHost = "http://localhost:3000/";
+const URL = "https://all-chat-backend.herokuapp.com/";
 
 class Signup extends Component {
 
@@ -31,7 +32,7 @@ class Signup extends Component {
         let password = event.target[2].value;
         let avatar = faker.internet.avatar();
         
-        fetch(localHost + 'api/v1/users', {
+        fetch(URL + 'api/v1/users', {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'
