@@ -13,7 +13,7 @@ class RoomWebSocket extends Component {
             received: (updatedRoom) => {
                 this.props.updateApp(updatedRoom)
             }
-        })
+        }) 
     }
 
     render() {
