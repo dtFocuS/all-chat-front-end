@@ -182,9 +182,9 @@
 }
 
 @media screen and (min-width: 990px) {
-  .chat-room-bar h2 {
+  /* .chat-room-bar h2 {
     font-size: 20px;
-  }
+  } */
 
   /* .form-group .btn-outline-primary {
     position: relative;
@@ -201,6 +201,9 @@
     position: relative;
     left: 84%;
     margin-top: 10px;
+  }
+  .chat-room-bar h2 {
+    font-size: 20px;
   }
 }
 
