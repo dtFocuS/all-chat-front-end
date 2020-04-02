@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import actionCable from 'actioncable';
 
 const CableApp = {}
-CableApp.cable = actionCable.createConsumer('ws://all-chat-backend.herokuapp.com/cable')
+CableApp.cable = actionCable.createConsumer('wss://all-chat-backend.herokuapp.com/cable')
 
 ReactDOM.render(
     <Router>
