@@ -9,7 +9,7 @@ class SideNav extends Component {
         super(props);
         this.state = {
             closed: true,
-        }
+        } 
     }
 
     handleOpen = () => {
